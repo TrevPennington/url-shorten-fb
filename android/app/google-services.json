@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "113754144050",
+    "project_id": "url-shortener-efc0f",
+    "storage_bucket": "url-shortener-efc0f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:113754144050:android:3423504b40dc7257b62b2b",
+        "android_client_info": {
+          "package_name": "com.urlshortener"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "113754144050-ea3bi6ikhl5fth1hhrh87mm5kl504vju.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAz9BJztJq-aGcDXuD6qme143C2h8k-ceY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "113754144050-ea3bi6ikhl5fth1hhrh87mm5kl504vju.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "113754144050-ru5bd95bj3vnps92srpa0c56gnlp5uji.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.urlShortener"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
