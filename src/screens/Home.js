@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Text, TextInput, Pressable, FlatList, ActivityIndicator } from 'react-native';
 import { Link } from '../components'
 import firestore from '@react-native-firebase/firestore';
+import { useAuthContext, useAuthFunctionsContext } from '../context/AuthContext'
 
 export const Home = () => {
+    const authContext = useAuthContext();
+    const authFunctions = useAuthFunctionsContext();
 
-    const linksCollection = firestore().collection('links');
+    const linksCollection = firestore().collection('users').doc(authContext.authUser.uid).collection('links');
 
     const [link, setLink] = useState('');
     const [customSlug, setCustomSlug] = useState('');
@@ -36,7 +39,8 @@ export const Home = () => {
                 timestamp: Date.now()
             })
             .then((d) => {
-                console.log('done', d);
+                setLink('');
+                setCustomSlug('');
                 setLoading(false);
             })
     }
@@ -88,7 +92,17 @@ export const Home = () => {
     return (
         
         <View style={styles.container}>
-            <Text style={styles.title}>URL Shortener</Text>
+            <View style={styles.header}>
+                <View style={styles.metaHeader}>
+                    <Text style={styles.subLabel}>{`${authContext.authUser.email}`}</Text>
+                    <Text style={styles.title}>URL Shortener</Text>
+                </View>
+                <Pressable
+                    onPress={authFunctions.logout}
+                >
+                    <Text style={styles.subLabel}>log out</Text>
+                </Pressable>
+            </View>
             <TextInput 
                 style={styles.textInput}
                 placeholder="Make your links shorter"
@@ -150,10 +164,24 @@ const styles = StyleSheet.create({
         backgroundColor: `darkslategrey`,
         paddingVertical: 42
     },
+    header: {
+        flexDirection: `row`,
+        justifyContent: `space-between`,
+        alignItems: `center`,
+        marginHorizontal: 24,
+        marginVertical: 20
+    },
+    metaHeader: {
+        alignItems: `flex-start`
+    },
+    subLabel: {
+        color: `#efefef`
+    },
     title: {
+        marginTop: 12,
         textAlign: `center`,
         color: `#efefef`,
-        fontSize: 22,
+        fontSize: 28,
         fontWeight: `700`
     },
     textInput: {

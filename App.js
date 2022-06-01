@@ -1,32 +1,16 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import {
-  Colors,
-} from 'react-native/Libraries/NewAppScreen';
-
-import { Home } from './src/screens'
+import { StatusBar } from 'react-native';
+import { AppNavigator } from './src/navigator/AppNavigator';
+import { AuthProvider } from './src/context/AuthContext'
 
 const App= () => {
-  const isDarkMode = useColorScheme() === 'dark';
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <Home />
-    </SafeAreaView>
+  return (    
+    <AuthProvider>
+      <StatusBar barStyle='light-content' />
+      <AppNavigator>
+      </AppNavigator>
+    </AuthProvider>
   );
 };
 
